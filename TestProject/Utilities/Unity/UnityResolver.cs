@@ -32,12 +32,26 @@ namespace Utilities.Unity
 
         public object GetService(Type serviceType)
         {
-            return container.Resolve(serviceType);
+            try
+            {
+                return container.Resolve(serviceType);
+            }
+            catch(ResolutionFailedException)
+            {
+                return null;
+            }
         }
 
         public IEnumerable<object> GetServices(Type serviceType)
         {
-            return container.ResolveAll(serviceType);
+            try
+            {
+                return container.ResolveAll(serviceType);
+            }
+            catch(ResolutionFailedException)
+            {
+                return new List<object>();
+            }
         }
     }
 }
