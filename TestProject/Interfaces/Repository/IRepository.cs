@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Interfaces.Repository
 {
-    public interface IRepository<T> : IDisposable 
+    public interface IRepository<T> 
         where T : class
     {
         IEnumerable<T> GetAll();
         T Get(int id);
-        bool Create(T value);
+        void Create(T value);
     }
 }

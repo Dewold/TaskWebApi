@@ -1,20 +1,20 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
-using Entities;
-using Dto;
-using Interfaces.Repository;
 using Interfaces.Service;
+using Entities;
+using Data;
+using Dto;
 
 namespace Business.Services
 {
     public class PositionService : IPositionService
     {
-        private readonly IRepository<Position> repository;
+        private readonly UnitOfWork unitOfWork;
         private readonly IMapper mapper;
 
-        public PositionService(IRepository<Position> repo, IMapper map)
+        public PositionService(IMapper map)
         {
-            this.repository = repo;
+            this.unitOfWork = new UnitOfWork();
             this.mapper = map;
         }
 
@@ -23,20 +23,20 @@ namespace Business.Services
             if (value != null)
             {
                 var position = mapper.Map<PositionDto, Position>(value);
-                repository.Create(position);
+                unitOfWork.PositionRepository.Create(position);
             }
         }
 
         public PositionDto Get(int id)
         {
-            var position = repository.Get(id);
+            var position = unitOfWork.PositionRepository.Get(id);
             var dto = mapper.Map<Position, PositionDto>(position);
             return dto;
         }
 
         public IEnumerable<PositionDto> GetAll()
         {
-            var list = repository.GetAll();
+            var list = unitOfWork.PositionRepository.GetAll();
             var dto = mapper.Map<IEnumerable<Position>, IEnumerable<PositionDto>>(list);
             return dto;
         }
