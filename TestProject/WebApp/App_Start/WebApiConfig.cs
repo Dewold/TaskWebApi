@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
+using Utilities.Unity;
 
 namespace WebApp
 {
@@ -10,6 +8,8 @@ namespace WebApp
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+            var register = new DependencyRegister();
+            config.DependencyResolver = new UnityResolver(register.ApplyDependencies()); 
 
             // Web API routes
             config.MapHttpAttributeRoutes();
