@@ -23,7 +23,7 @@ namespace WebApp
             );
 
             // Enable Cors for the Angular app
-            var cors = new EnableCorsAttribute("http://localhost:4200", "*", "*");
+            var cors = new EnableCorsAttribute("http://localhost:4200", headers: "*", methods: "*");
             config.EnableCors(cors);
 
             // Set JSON formatter as default one
