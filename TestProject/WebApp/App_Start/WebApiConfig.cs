@@ -1,5 +1,7 @@
 ﻿using System.Web.Http;
 using Utilities.Unity;
+using System.Web.Http.Cors;
+using Newtonsoft.Json.Serialization;
 
 namespace WebApp
 {
@@ -19,6 +21,16 @@ namespace WebApp
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            // Enable Cors for the Angular app
+            var cors = new EnableCorsAttribute("http://localhost:4200", "*", "*");
+            config.EnableCors(cors);
+
+            // Set JSON formatter as default one
+            var formatter = config.Formatters.JsonFormatter;
+            formatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
+            formatter.SerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Utc;
         }
     }
 }
