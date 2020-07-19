@@ -21,13 +21,15 @@ namespace Data.DbConfiguration
                .IsOptional();
             self.HasIndex(dd => dd.DismissalDate);
 
-            self.HasRequired(em => em.Employee)
-                .WithMany(c => c.Career)
-                .HasForeignKey(e => e.EmployeeId);
-
             self.HasRequired(ps => ps.Position)
                 .WithMany(c => c.Career)
-                .HasForeignKey(p => p.PositionId);
+                .HasForeignKey(p => p.PositionId)
+                .WillCascadeOnDelete(false);
+
+            self.HasRequired(em => em.Employee)
+                .WithMany(c => c.Career)
+                .HasForeignKey(e => e.EmployeeId)
+                .WillCascadeOnDelete(false);
         }
     }
 }

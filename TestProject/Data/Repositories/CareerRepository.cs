@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Entities;
 using Interfaces.Repository;
 
@@ -16,17 +16,20 @@ namespace Data.Repositories
 
         public void Create(CareerHistory value)
         {
-            throw new NotImplementedException();
+            context.Careers.Add(value);
+            context.SaveChanges();
         }
 
         public CareerHistory Get(int id)
         {
-            throw new NotImplementedException();
+            return context.Careers
+               .Where(p => p.Id == id)
+               .FirstOrDefault();
         }
 
         public IEnumerable<CareerHistory> GetAll()
         {
-            throw new NotImplementedException();
+            return context.Careers;
         }
     }
 }

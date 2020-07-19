@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Entities;
 using Interfaces.Repository;
 
@@ -14,19 +14,22 @@ namespace Data.Repositories
             this.context = con;
         }
 
-        public void Create(Employee value)
+        public void Create(Employee employee)
         {
-            throw new NotImplementedException();
+            context.Employees.Add(employee);
+            context.SaveChanges();
         }
 
         public Employee Get(int id)
         {
-            throw new NotImplementedException();
+            return context.Employees
+               .Where(p => p.Id == id)
+               .FirstOrDefault();
         }
 
         public IEnumerable<Employee> GetAll()
         {
-            throw new NotImplementedException();
+            return context.Employees;
         }
     }
 }
