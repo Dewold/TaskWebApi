@@ -24,6 +24,8 @@ namespace Utilities.Unity
             container.RegisterInstance(mapper.Mapper);
 
             container.RegisterType<IRepository<Position>, PositionRepository>();
+            container.RegisterType<IRepository<Employee>, EmployeeRepository>();
+            container.RegisterType <IRepository<CareerHistory>, CareerRepository>();
 
             container.RegisterType<IPositionService, PositionService>();
             container.RegisterType<IEmployeeService, EmployeeService>();

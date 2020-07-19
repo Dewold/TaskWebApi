@@ -13,9 +13,7 @@ namespace Entities
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public decimal Salary { get; set; }
-        public int CurrentPositionId { get; set; }
 
-        public Position CurrentPosition { get; set; }
         public virtual ICollection<CareerHistory> Career { get; set; }
     }
 }

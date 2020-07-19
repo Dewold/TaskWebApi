@@ -29,7 +29,7 @@ namespace WebApp.Controllers
         }
 
         // POST: api/Position
-        public void Post([FromBody]PositionDto value)
+        public void Post([FromBody] PositionDto value)
         {
             service.Create(value);
         }

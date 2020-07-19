@@ -37,8 +37,8 @@ namespace Business.Services
         public IEnumerable<PositionDto> GetAll()
         {
             var list = unitOfWork.PositionRepository.GetAll();
-            var dto = mapper.Map<IEnumerable<Position>, IEnumerable<PositionDto>>(list);
-            return dto;
+            var dtoList = mapper.Map<IEnumerable<Position>, IEnumerable<PositionDto>>(list);
+            return dtoList;
         }
     }
 }

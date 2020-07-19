@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Collections.Generic;
 using System.Web.Http;
 using Dto;
 using Interfaces.Service;
@@ -21,28 +17,21 @@ namespace WebApp.Controllers
         // GET: api/Employee
         public IEnumerable<EmployeeInformationDto> Get()
         {
-            return new List<EmployeeInformationDto>();
+            var list = service.GetAll();
+            return list;
         }
 
         // GET: api/Employee/5
-        public string Get(int id)
+        public EmployeeInformationDto Get(int id)
         {
-            return "value";
+            var selected = service.Get(id);
+            return selected;
         }
 
         // POST: api/Employee
-        public void Post([FromBody]string value)
+        public void Post([FromBody] EmployeeInformationDto value)
         {
-        }
-
-        // PUT: api/Employee/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Employee/5
-        public void Delete(int id)
-        {
+            service.Create(value);
         }
     }
 }
