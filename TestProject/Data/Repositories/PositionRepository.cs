@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using Entities;
 using Interfaces.Repository;

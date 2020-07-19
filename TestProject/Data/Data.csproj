@@ -55,12 +55,20 @@
     <Compile Include="DbConfiguration\EmployeeConfig.cs" />
     <Compile Include="DbConfiguration\PositionConfig.cs" />
     <Compile Include="EmployeeManagementContext.cs" />
+    <Compile Include="Migrations\202007191558063_FixedConnection.cs" />
+    <Compile Include="Migrations\202007191558063_FixedConnection.designer.cs">
+      <DependentUpon>202007191558063_FixedConnection.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\PositionRepository.cs" />
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202007191558063_FixedConnection.resx">
+      <DependentUpon>202007191558063_FixedConnection.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

@@ -27,10 +27,6 @@ namespace Data.DbConfiguration
                .HasColumnType("numeric")
                .HasPrecision(8, 2)
                .IsRequired();
-
-            self.HasRequired(cp => cp.CurrentPosition)
-                .WithMany(e => e.Employees)
-                .HasForeignKey(p => p.CurrentPositionId);
         }
     }
 }
