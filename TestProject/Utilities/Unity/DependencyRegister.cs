@@ -26,6 +26,7 @@ namespace Utilities.Unity
             container.RegisterType<IRepository<Position>, PositionRepository>();
 
             container.RegisterType<IPositionService, PositionService>();
+            container.RegisterType<IEmployeeService, EmployeeService>();
 
             return container;
         }

@@ -5,24 +5,21 @@ namespace Data
 {
     public class UnitOfWork : IDisposable
     {
-        private EmployeeManagementContext context;
-        private PositionRepository positionRepository;
+        private readonly EmployeeManagementContext context;
+        private readonly PositionRepository positionRepository;
         private bool disposed;
 
         public UnitOfWork()
         {
             this.context = new EmployeeManagementContext();
+            this.positionRepository = new PositionRepository(context);
             this.disposed = false;
         }
 
         #region Repositories
         public PositionRepository PositionRepository
         {
-            get
-            {
-                return this.positionRepository ??
-                    new PositionRepository(context);
-            }
+            get { return this.positionRepository; }
         }
         #endregion
 
