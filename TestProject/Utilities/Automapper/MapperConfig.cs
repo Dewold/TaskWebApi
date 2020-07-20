@@ -26,6 +26,7 @@ namespace Utilities.Automapper
                 c.CreateMap<EmployeeInformationDto, CareerHistory>()
                     .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                     .ForMember(dest => dest.EmployeeId, opt => opt.MapFrom(src => src.EmployeeId))
+                    .ForMember(dest => dest.Position, opt => opt.MapFrom(src => src.Position))
                     .ForMember(dest => dest.PositionId, opt => opt.MapFrom(src => src.PositionId))
                     .ForMember(dest => dest.HireDate, opt => opt.MapFrom(src => src.HireDate))
                     .ForMember(dest => dest.DismissalDate, opt => opt.MapFrom(src => src.DismissalDate))
