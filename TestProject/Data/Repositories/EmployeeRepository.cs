@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using Entities;
 using Interfaces.Repository;
 
@@ -23,13 +24,15 @@ namespace Data.Repositories
         public Employee Get(int id)
         {
             return context.Employees
+               .Include(c => c.Career.Select(p => p.Position))
                .Where(p => p.Id == id)
                .FirstOrDefault();
         }
 
         public IEnumerable<Employee> GetAll()
         {
-            return context.Employees;
+            return context.Employees
+                .Include(c => c.Career.Select(p => p.Position));
         }
     }
 }

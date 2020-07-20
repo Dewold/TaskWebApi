@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using Entities;
 using Interfaces.Repository;
@@ -23,13 +24,15 @@ namespace Data.Repositories
         public CareerHistory Get(int id)
         {
             return context.Careers
+               .Include(p => p.Position)
                .Where(p => p.Id == id)
                .FirstOrDefault();
         }
 
         public IEnumerable<CareerHistory> GetAll()
         {
-            return context.Careers;
+            return context.Careers
+                .Include(p => p.Position);
         }
     }
 }
