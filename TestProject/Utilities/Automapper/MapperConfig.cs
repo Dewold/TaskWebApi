@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Entities;
 using Dto;
+using Utilities.Automapper.Resolvers;
 
 namespace Utilities.Automapper
 {
@@ -16,21 +17,8 @@ namespace Utilities.Automapper
             {
                 c.CreateMap<Position, PositionDto>().ReverseMap();
 
-                c.CreateMap<EmployeeInformationDto, Employee>()
-                    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.EmployeeId))
-                    .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName))
-                    .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName))
-                    .ForMember(dest => dest.Salary, opt => opt.MapFrom(src => src.Salary))
-                    .ReverseMap();
-
-                c.CreateMap<EmployeeInformationDto, CareerHistory>()
-                    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
-                    .ForMember(dest => dest.EmployeeId, opt => opt.MapFrom(src => src.EmployeeId))
-                    .ForMember(dest => dest.Position, opt => opt.MapFrom(src => src.Position))
-                    .ForMember(dest => dest.PositionId, opt => opt.MapFrom(src => src.PositionId))
-                    .ForMember(dest => dest.HireDate, opt => opt.MapFrom(src => src.HireDate))
-                    .ForMember(dest => dest.DismissalDate, opt => opt.MapFrom(src => src.DismissalDate))
-                    .ReverseMap();
+                c.CreateMap<EmployeeInformationDto, Employee>().ConvertUsing(new EmployeeInformationDtoToEmployeeResolver());
+                c.CreateMap<Employee, EmployeeInformationDto>().ConvertUsing(new EmployeeToEmployeeInformationDtoResolver());
             });
 
             Mapper = config.CreateMapper();

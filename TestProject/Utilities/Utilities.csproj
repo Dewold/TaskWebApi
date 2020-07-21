@@ -63,6 +63,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Automapper\MapperConfig.cs" />
+    <Compile Include="Automapper\Resolvers\EmployeeInformationDtoToEmployeeResolver.cs" />
+    <Compile Include="Automapper\Resolvers\EmployeeToEmployeeInformationDtoResolver.cs" />
     <Compile Include="Unity\DependencyRegister.cs" />
     <Compile Include="Unity\UnityResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
